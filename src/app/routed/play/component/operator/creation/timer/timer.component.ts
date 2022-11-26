@@ -118,8 +118,10 @@ export class TimerComponent implements OnInit {
       )
 
     // 子がある場合はその子のオペレーターを更新する
-    if (this.downstreams?.[0]) {
-      this.downstreams[0].instance.operatorInit()
+    if (this.downstreams) {
+      this.downstreams.forEach(downstream => {
+        downstream.instance.operatorInit()
+      })
     }
   }
 }
