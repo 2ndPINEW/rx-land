@@ -1,4 +1,5 @@
 import { Component, HostBinding, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { SIZE_OF_CELL } from '../operator.config';
 import { OperatorElement, Posiiton, Size } from '../operator.interface';
 
@@ -31,6 +32,8 @@ export class SubscriberComponent implements OnInit {
 
   data: any = 0
 
+  streamSubscription: Subscription | undefined
+
   @HostBinding('style.width') get widthPx() { return `${this.sizeOfCell.x}px` }
   @HostBinding('style.height') get heightPx() { return `${this.sizeOfCell.y}px` }
 
@@ -59,18 +62,15 @@ export class SubscriberComponent implements OnInit {
   // オペレーターを初期化する
   // MEMO: 上流のコンポーネントから呼び出されるので関数名は変えれない
   operatorInit (): void {
+    if (this.streamSubscription) {
+      this.streamSubscription.unsubscribe()
+    }
     if (!this.upstreams?.[0]) {
       console.warn('subscriber need upstream')
       return
     }
-    this.upstreams[0].instance.operator$?.subscribe(v => {
+    this.streamSubscription = this.upstreams[0].instance.operator$?.subscribe(v => {
       this.data = v
     })
-    // オペレーターを作る、途中でアニメーションの制御もする
-    // this._operator$ = timer(this.params.startDue, this.params.intervalDuration, this.params.scheduler)
-    //   .pipe(
-    //     tap((v) => { console.log(v) }),
-    //     delay(500)
-    //   )
   }
 }
