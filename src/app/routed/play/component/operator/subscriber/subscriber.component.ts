@@ -13,6 +13,8 @@ export class SubscriberComponent implements OnInit {
 
   position!: Posiiton
 
+  datas: number[] = []
+
   /** 上流のオペレーター */
   private _upstreams: OperatorElement[] | undefined
   get upstreams (): OperatorElement[] | undefined {
@@ -29,8 +31,6 @@ export class SubscriberComponent implements OnInit {
   parent: undefined = undefined
   operator$: undefined = undefined
   params: undefined = undefined
-
-  data: any = 0
 
   streamSubscription: Subscription | undefined
 
@@ -62,6 +62,7 @@ export class SubscriberComponent implements OnInit {
   // オペレーターを初期化する
   // MEMO: 上流のコンポーネントから呼び出されるので関数名は変えれない
   operatorInit (): void {
+    this.datas = []
     if (this.streamSubscription) {
       this.streamSubscription.unsubscribe()
     }
@@ -70,7 +71,7 @@ export class SubscriberComponent implements OnInit {
       return
     }
     this.streamSubscription = this.upstreams[0].instance.operator$?.subscribe(v => {
-      this.data = v
+      this.datas.push(v)
     })
   }
 }

@@ -19,6 +19,8 @@ export class TimerComponent implements OnInit {
 
   position!: Posiiton
 
+  datas: number[] = []
+
   /** 上流のオペレーター */
   private _upstreams: OperatorElement[] | undefined
   get upstreams (): OperatorElement[] | undefined {
@@ -63,7 +65,7 @@ export class TimerComponent implements OnInit {
 
   private _params: TimerParams = {
     startDue: 0,
-    intervalDuration: 1000
+    intervalDuration: 2000
   }
   get params (): TimerParams {
     return this._params
@@ -94,8 +96,6 @@ export class TimerComponent implements OnInit {
     }
   }
 
-  data: any = undefined
-
   constructor() { }
 
   ngOnInit(): void {
@@ -104,6 +104,7 @@ export class TimerComponent implements OnInit {
 
   // オペレーターを初期化する
   operatorInit (): void {
+    this.datas = []
     if (this._operator$) {
       // ここでコンプリートした方が良いかも
       this._operator$ = undefined
@@ -112,9 +113,12 @@ export class TimerComponent implements OnInit {
     this._operator$ = timer(this.params.startDue, this.params.intervalDuration, this.params.scheduler)
       .pipe(
         tap((v) => {
-          this.data = v
+          this.datas.push(v)
         }),
-        delay(500)
+        delay(3000),
+        tap((v => {
+          this.datas = this.datas.filter(data => data !== v)
+        }))
       )
 
     // 子がある場合はその子のオペレーターを更新する

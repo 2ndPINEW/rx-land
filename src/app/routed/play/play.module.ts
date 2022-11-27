@@ -6,6 +6,7 @@ import { PlayComponent } from './play.component';
 import { TimerComponent } from './component/operator/creation/timer/timer.component';
 import { FilterComponent } from './component/operator/pipeable/filter/filter.component';
 import { SubscriberComponent } from './component/operator/subscriber/subscriber.component';
+import { StreamDataComponent } from './component/stream-data/stream-data.component';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { SubscriberComponent } from './component/operator/subscriber/subscriber.
     PlayComponent,
     TimerComponent,
     FilterComponent,
-    SubscriberComponent
+    SubscriberComponent,
+    StreamDataComponent
   ],
   imports: [
     CommonModule,

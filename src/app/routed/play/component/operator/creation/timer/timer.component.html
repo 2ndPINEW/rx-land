@@ -1,5 +1,10 @@
 
 <div class="operator-wrapper">
   <img src="assets/images/operator/timer_back.png" class="back">
+  <app-stream-data
+    class="stream-data"
+    *ngFor="let data of datas"
+    [data]="data"
+  ></app-stream-data>
   <img src="assets/images/operator/timer_front.png" class="front">
 </div>

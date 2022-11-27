@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  position: absolute;
+  z-index: 150;
+  top: 0;
+
+  .data-wrapper {
+    position: relative;
+    .number {
+      position: absolute;
+      top: 40px;
+      background-color: white;
+      color: black;
+      width: 40px;
+      height: 36px;
+      line-height: 36px;
+      border-radius: 8px;
+      font-size: 18px;
+      text-align: center;
+    }
+  }
+
+}

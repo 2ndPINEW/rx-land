@@ -20,5 +20,19 @@
     .front {
       z-index: 200;
     }
+
+    .stream-data {
+      animation: 3s linear 0s 1 running leftToRightFull;
+
+      @keyframes leftToRightFull {
+        from {
+          left: 0;
+        }
+
+        to {
+          left: 100px;
+        }
+      }
+    }
   }
 }
