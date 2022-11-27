@@ -19,29 +19,20 @@ export class PlayComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.addComponent(TimerComponent, { x: 0, y: 0 })
-    this.addComponent(SubscriberComponent, { x: 1, y: 0 })
-    this.addComponent(TimerComponent, { x: 4, y: 0 })
-    this.addComponent(SubscriberComponent, { x: 5, y: 0 })
 
-    this.addComponent(TimerComponent, { x: 0, y: 10 })
-    this.addComponent(SubscriberComponent, { x: 1, y: 10 })
-
-    this.addComponent(TimerComponent, { x: 0, y: 19 })
-    this.addComponent(SubscriberComponent, { x: 1, y: 19 })
   }
 
   create1 (): void {
     this.addComponent(TimerComponent, { x: 0, y: 0 })
-    this.addComponent(TimerComponent, { x: 4, y: 0 })
+    this.addComponent(TimerComponent, { x: 4, y: 1 })
   }
 
   create2 (): void {
-    this.addComponent(SubscriberComponent, { x: 2, y: 0 })
-    this.addComponent(SubscriberComponent, { x: 2, y: 1 })
+    this.addComponent(SubscriberComponent, { x: 1, y: 0 })
+    this.addComponent(SubscriberComponent, { x: 1, y: 2 })
 
     this.addComponent(SubscriberComponent, { x: 6, y: 0 })
-    this.addComponent(SubscriberComponent, { x: 6, y: 1 })
+    this.addComponent(SubscriberComponent, { x: 5, y: 1 })
   }
 
   addComponent (componentType: Type<OperatorComponent>, position: Posiiton): void {
@@ -86,7 +77,7 @@ export class PlayComponent implements OnInit {
     return this.elements.filter(element => {
       return element.instance.position.x + element.instance.size.x === pos.x
           && arrowedYConditions.some(arrow => {
-            const elementArrowedYConditions = this.range(element.instance.position.y, element.instance.position.y + element.instance.size.y)
+            const elementArrowedYConditions = this.range(element.instance.position.y, element.instance.position.y + element.instance.size.y - 1)
             return elementArrowedYConditions.some(elementArrow => arrow === elementArrow)
           })
     })
@@ -104,7 +95,7 @@ export class PlayComponent implements OnInit {
     return this.elements.filter(element => {
       return element.instance.position.x === arrowedXCondition
           && arrowedYConditions.some(arrow => {
-            const elementArrowedYConditions = this.range(element.instance.position.y, element.instance.position.y + element.instance.size.y)
+            const elementArrowedYConditions = this.range(element.instance.position.y, element.instance.position.y + element.instance.size.y - 1)
             return elementArrowedYConditions.some(elementArrow => arrow === elementArrow)
           })
     })
