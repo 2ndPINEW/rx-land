@@ -1,9 +1,15 @@
 :host {
   display: block;
 
-  .play-area {
-    position: relative;
-    margin: 16px;
+  .play-area-padding-wrapper {
+    padding: 32px;
+
+    .play-area {
+      position: relative;
+
+      width: 2000px;
+      height: 2000px;
+    }
   }
 
   button {

@@ -19,6 +19,16 @@ export class PlayComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.addComponent(TimerComponent, { x: 0, y: 0 })
+    this.addComponent(SubscriberComponent, { x: 1, y: 0 })
+    this.addComponent(TimerComponent, { x: 4, y: 0 })
+    this.addComponent(SubscriberComponent, { x: 5, y: 0 })
+
+    this.addComponent(TimerComponent, { x: 0, y: 10 })
+    this.addComponent(SubscriberComponent, { x: 1, y: 10 })
+
+    this.addComponent(TimerComponent, { x: 0, y: 19 })
+    this.addComponent(SubscriberComponent, { x: 1, y: 19 })
   }
 
   create1 (): void {
